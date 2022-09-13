@@ -7,4 +7,7 @@ http = urllib3.PoolManager()
 r = http.request('GET', 'https://ghibliapi.herokuapp.com/films')
 json_film = json.loads(r.data.decode('utf-8'))
 
-# Print data to data films
+# Dump Data 
+
+with open("film_info.json", "w") as outfile: 
+    json.dump(json_film, outfile)

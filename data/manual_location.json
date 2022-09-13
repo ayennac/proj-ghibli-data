@@ -1,0 +1,18 @@
+[
+    {
+        "image": "this is a url",
+        "latitude": 35.7802,
+        "longitude": 139.4219,
+        "place_movie": "Totoro's Forest",
+        "name_irl": "Totoro's Forest",
+        "description": "This is the description for Totoro's Forest"
+    },
+    {
+        "image": "this is a url",
+        "latitude": 35.7260,
+        "longitude": 139.4053,
+        "place_movie": "Sayama Lake",
+        "name_irl": "Sayama Lake",
+        "description": "This is the description for Sayama Lake"
+    }
+]
