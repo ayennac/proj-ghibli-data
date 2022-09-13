@@ -6,5 +6,16 @@
 <h1> 
     You got this
 </h1>
+<div id="map" style="width: 100%; height: 100%; position: absolute;"></div>
+<div id = "map-canvas">
 
+</div>
+</div>
+
+{% endblock %}
+
+{% block after_body %}
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key={{maps_api_key}}&callback=initMap">
+</script>
 {% endblock %}
