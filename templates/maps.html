@@ -3,19 +3,39 @@
 {% block title %}Homepage{% endblock %}
 
 {% block body %}
-<h1> 
-    You got this
-</h1>
-<div id = "info-bar"> Info bar: </div>
+<div class="container">
 
-<div id = "map-canvas">
-    <div id="map" style="width: 50%; height: 100%; position: absolute;">
+    <div class="row">
+
+      <div class="col">
+        <!-- COLUMN ONE -->
+        <div class="row">
+            <div class="col">
+                <div id = "info-bar">
+                    <h2>Info bar: </h2>
+                </div>
+                <div id = "irl-picture">
+                 <p>a picture will go here</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div id="filter-form"> 
+                    <p> a filtering mechanism will go here</p>
+                </div>
+            </div>
+        </div>
+      </div>  
+      <div class="col">
+         <!-- COLUMN TWO -->
+        <div id = "map-canvas">
+            <div id="map" style="width: 50%; height: 100%; position: absolute;">
+            </div>
+        </div>
+      </div>
     </div>
-</div>
-
-
-
-
+  </div>
 {% endblock %}
 
 {% block after_body %}

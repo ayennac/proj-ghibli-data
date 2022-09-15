@@ -1,6 +1,3 @@
-html{
-    background-color: #f2f2f2;
-}
 
 #map-canvas {
     height: 200px;
@@ -8,3 +5,14 @@ html{
     width: 50%;
     /* The width is the width of the web page */
   }
+#info-bar{
+    outline-style: solid;
+}
+
+#filter-form{
+    outline-style: solid;
+}
+
+#irl-picture{
+    outline-style: solid;
+}
