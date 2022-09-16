@@ -10,6 +10,8 @@ app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 maps_api_key = os.environ['MAPS_API_KEY']
+#make sure to source secrets.sh to put it into the environment 
+
 
 @app.route('/maps')
 def homepage():

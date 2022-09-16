@@ -1,3 +1,42 @@
+location_data = [
+  {
+      "image": "this is a url",
+      "latitude": 35.7802,
+      "longitude": 139.4219,
+      "place_movie": "Totoro's Forest",
+      "name_irl": "Totoro's Forest",
+      "description": "This is the description for Totoro's Forest", 
+      "movie": "My Neighbor Totoro"
+  },
+  {
+      "image": "this is a url",
+      "latitude": 35.7260,
+      "longitude": 139.4053,
+      "place_movie": "Sayama Lake",
+      "name_irl": "Sayama Lake",
+      "description": "This is the description for Sayama Lake",
+      "movie": "My Neighbor Totoro"
+  },
+  {
+      "image": "this is a url",
+      "latitude": 33.85116326,
+      "longitude": 132.7851635,
+      "place_movie": "The Bathhouse",
+      "name_irl": "Dōgo Onsen Honkan",
+      "description": "This is the description for Dōgo Onsen Honkan",
+      "movie": "Spirited Away"
+  },
+  {
+      "image": "this is a url",
+      "latitude": 30.38017,
+      "longitude": 130.57421,
+      "place_movie": "Princess Mononoke's Forest",
+      "name_irl": "Shiratani Unsuikyō Gorge",
+      "description": "This is the description for Princess Mononoke's Forest",
+      "movie": "Princess Mononoke"
+  }
+]
+
 //TO DO:
 // - break this funciton up 
 // - start thinking about testing 
