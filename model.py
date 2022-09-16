@@ -21,9 +21,9 @@ class Movie(db.Model):
     description = db.Column(db.String, unique=True)
     director = db.Column(db.String)
     producer = db.Column(db.String)
-    release_date = db.Column(db.Integer, unique=True)
-    running_time = db.Column(db.Integer, unique=True)
-    rt_score = db.Column(db.Integer, unique=True)
+    release_date = db.Column(db.Integer)
+    running_time = db.Column(db.Integer)
+    rt_score = db.Column(db.Integer)
     
     locations  = db.relationship("Location", back_populates="movie")
 
@@ -39,7 +39,8 @@ class Location(db.Model):
     location_id = db.Column(db.Integer,
                         autoincrement= True,
                         primary_key=True)
-    image = db.Column(db.String, unique=True)
+    movie_id = db.Column(db.Integer, db.ForeignKey("movies.movie_id"))
+    image = db.Column(db.String)
     latitude = db.Column(db.Integer)
     longitude = db.Column(db.Integer)
     place_movie = db.Column(db.String)
@@ -49,7 +50,7 @@ class Location(db.Model):
     movie = db.relationship("Movie", back_populates="locations")
 
     def __repr__(self):
-        return f'<Location location_id={self.location_id} place={self.place_in_movie}>'
+        return f'<Location location_id={self.location_id} place={self.place_movie}>'
 
 
 def connect_to_db(flask_app, db_uri="postgresql:///movies", echo=True):

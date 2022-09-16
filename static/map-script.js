@@ -1,27 +1,3 @@
-
-
-//TO DO:
-//Figure out how to import this location data
-location_data = [
-  {
-      "image": "this is a url",
-      "latitude": 35.7802,
-      "longitude": 139.4219,
-      "place_movie": "Totoro's Forest",
-      "name_irl": "Totoro's Forest",
-      "description": "This is the description for Totoro's Forest"
-  },
-  {
-      "image": "this is a url",
-      "latitude": 35.7260,
-      "longitude": 139.4053,
-      "place_movie": "Sayama Lake",
-      "name_irl": "Sayama Lake",
-      "description": "This is the description for Sayama Lake"
-  }
-]
-
-
 //TO DO:
 // - break this funciton up 
 // - start thinking about testing 
@@ -31,6 +7,7 @@ function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 5.5,
       center: Japan,
+      mapId: "625155ec1bab001d", 
     });
 
     for(let i = 0; i < location_data.length; i++){
