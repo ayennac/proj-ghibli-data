@@ -5,6 +5,7 @@ import json
 
 import model
 import server
+
 import crud
 
 os.system("dropdb movies")
@@ -36,16 +37,13 @@ def get_movies():
     model.db.session.commit()
 
 
-def get_movie_from_title(title):
-    """Return a movie from title"""
-    return model.Movie.query.filter(model.Movie.title == title).first()
 
 def get_location():
     """Load location from dataset into database."""
     with open('data/manual_location.json') as r:
         location_data = json.loads(r.read())
         for location in location_data:
-            movie_to_edit = get_movie_from_title(location["movie"])
+            movie_to_edit = crud.get_movie_from_title(location["movie"])
             model.db.session.add(model.Location(image = location["image"],
                                     latitude = location["latitude"],
                                     longitude = location["longitude"],
