@@ -20,8 +20,10 @@ maps_api_key = os.environ['MAPS_API_KEY']
 @app.route('/maps')
 def homepage():
     """Show maps"""
-
-    return render_template("maps.html", maps_api_key = maps_api_key)
+    movies = crud.get_all_movies()
+    return render_template("maps.html", 
+                            maps_api_key = maps_api_key,
+                            movies=movies)
 
 @app.route('/api/locations')
 def location_info():

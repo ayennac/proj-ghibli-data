@@ -12,6 +12,11 @@ def get_all_locations():
     """Return a list of locations"""
     return Location.query.all()
 
+def get_all_movies():
+    """Return a list of all movies"""
+    return Movie.query.all()
+
+
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)

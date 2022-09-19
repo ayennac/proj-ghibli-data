@@ -15,3 +15,8 @@
 #irl-picture{
     outline-style: solid;
 }
+
+#irl-picture img{
+    width: 200px;
+    height: 200px;
+}

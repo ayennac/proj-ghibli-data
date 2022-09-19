@@ -23,8 +23,11 @@
             <div class="col">
                 <div id="filter-form">
                     <h3>Filter locations by movie</h3>
-                    <select name = "chosen_movie">
-                        <option value="movie1"> Movie1 </option>
+                    <select name = "chosen_movie" onchange="filterMarkers(this.value);">
+                        <option value="all">See all</option>
+                        {%for movie in movies%}
+                        <option value="{{movie.title}}"> {{movie.title}} </option>
+                        {%endfor%}
                     </select>
                 </div>
             </div>
