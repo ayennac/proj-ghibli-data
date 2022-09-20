@@ -35,34 +35,48 @@ function initMap() {
           const infowindow = new google.maps.InfoWindow({
             content: location["description"]
           })
+          
 
-          const newel = document.createElement('p')
-          newel.textContent = location["name_irl"] +": "+location["description"] 
-          const newimg = document.createElement('img')
-          newimg.src = "/static/sample_pic.jpg"
-          console.log(newimg.src)
-
+          const movie_card = `<div class="movie-card-${location["name_irl"]}"> <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src= ${location["image"]} alt="Card image cap">
+              </img><div class="card-body">
+                <h5 class="card-title">${location["name_irl"]}</h5>
+                <p class="card-text">${location["description"]}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a></div>
+                </div> </div>`;
 
           marker.addListener("click", () => {
-            document.getElementById("info-bar").appendChild(newel)
-            document.getElementById("irl-picture").appendChild(newimg)
-            infowindow.open({
-              anchor:marker,
-              map,
-              shouldFocus:true
+            if (document.getElementById("info-card").firstChild!= null) {
+                for (const node of document.getElementById("info-card").childNodes){
+                  console.log(node)
+                  node.remove()
+                }
+                document.getElementById("info-card").innerHTML += movie_card
+                infowindow.open({
+                  anchor:marker,
+                  map,
+                  shouldFocus:true
           })
+          } else {
+          document.getElementById("info-card").innerHTML += movie_card
+                infowindow.open({
+                  anchor:marker,
+                  map,
+                  shouldFocus:true
+        })
+      }
       })
     }
   })
 }
 
-console.log(map_markers)
+
 filterMarkers = function (category) {
+  console.log(category)
   for (const marker of map_markers) {
-          // If is same category or category not picke
-      if (marker.category == category || category.length === 0) {
+          // If is same category or category not picked
+      if (marker.category == category || category.length === 0 || category == "all") {
           marker.setVisible(true);
-          console.log(marker)
       }
       // Categories don't match 
       else {

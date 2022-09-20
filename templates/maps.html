@@ -11,16 +11,6 @@
         <!-- COLUMN ONE -->
         <div class="row">
             <div class="col">
-                <div id = "info-bar">
-                    <h2>Info bar: </h2>
-                </div>
-                <div id = "irl-picture">
-                 <p>a picture will go here</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
                 <div id="filter-form">
                     <h3>Filter locations by movie</h3>
                     <select name = "chosen_movie" onchange="filterMarkers(this.value);">
@@ -29,6 +19,15 @@
                         <option value="{{movie.title}}"> {{movie.title}} </option>
                         {%endfor%}
                     </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div id = "info-bar">
+                    <h2>Info bar: </h2>
+                    <div id = 'info-card'>
+                    </div>
                 </div>
             </div>
         </div>
