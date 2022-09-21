@@ -40,9 +40,10 @@ function initMap() {
 
           const movie_card = `<div class="movie-card location-${location["location_id"]}"> 
           <div class="card">
-            <img class="card-img-top" src= ${location["image"]} alt="Card image cap"></img>
+            <img class="card-img-top" src= ${location["image"]} alt="A picture of ${location["name_irl"]}"></img>
               <div class="card-body">
-                <h5 class="card-title">${location["name_irl"]}</h5>
+                <h5 class="card-title">${location["name_irl"]}</h5> 
+                <h6 class="card-sub-title">${location["place_movie"]} from ${location["movie"]} </h6>
                 <p class="card-text">${location["description"]}</p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>

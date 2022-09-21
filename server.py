@@ -16,9 +16,13 @@ app.jinja_env.undefined = StrictUndefined
 maps_api_key = os.environ['MAPS_API_KEY']
 #make sure to source secrets.sh to put it into the environment 
 
+@app.route('/')
+def show_homepage():
+    """Show homepage"""
+    return render_template("home.html")
 
 @app.route('/maps')
-def homepage():
+def mapspage():
     """Show maps"""
     movies = crud.get_all_movies()
     return render_template("maps.html", 

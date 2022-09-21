@@ -20,3 +20,8 @@
     width: 200px;
     height: 200px;
 }
+
+.movie-card .card-img-top{
+    width: 100%;
+    height: 300px;
+}
