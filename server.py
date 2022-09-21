@@ -31,6 +31,7 @@ def location_info():
     locations = [
         {
             "image": location.image,
+            "location_id": location.location_id,
             "latitude": location.latitude,
             "longitude": location.longitude,
             "place_movie": location.place_movie,

@@ -22,6 +22,7 @@ function initMap() {
 
           //Creates all location markers
           const latlong = {lat: location["latitude"], lng: location["longitude"]}
+          console.log(latlong)
           const marker = new google.maps.Marker({
             position: latlong,
             map,
@@ -37,13 +38,15 @@ function initMap() {
           })
           
 
-          const movie_card = `<div class="movie-card-${location["name_irl"]}"> <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src= ${location["image"]} alt="Card image cap">
-              </img><div class="card-body">
+          const movie_card = `<div class="movie-card location-${location["location_id"]}"> 
+          <div class="card">
+            <img class="card-img-top" src= ${location["image"]} alt="Card image cap"></img>
+              <div class="card-body">
                 <h5 class="card-title">${location["name_irl"]}</h5>
                 <p class="card-text">${location["description"]}</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a></div>
-                </div> </div>`;
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+          </div> </div>`;
 
           marker.addListener("click", () => {
             if (document.getElementById("info-card").firstChild!= null) {
