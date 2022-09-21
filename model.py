@@ -31,6 +31,26 @@ class Movie(db.Model):
         return f'<Movie movie_id={self.movie_id} title={self.title}>'
 
 
+class User(db.Model):
+    """A user"""
+
+    __tablename__ = 'users'
+    user_id = db.Column(db.Integer, 
+                        autoincrement=True,
+                        primary_key = True)
+    username = db.Column(db.String)
+    first_name = db.Column(db.String)
+    last_name = db.Column(db.String)
+    email_address = db.Column(db.String)
+    password = db.Column(db.String)
+
+    locations = db.relationship("Location", back_populates="user")
+
+    def __repr__(self):
+        return f'<User user_id={self.user_id} username={self.username}>'
+
+
+
 class Location(db.Model):
     """A location of a scene."""
 
@@ -40,12 +60,17 @@ class Location(db.Model):
                         autoincrement= True,
                         primary_key=True)
     movie_id = db.Column(db.Integer, db.ForeignKey("movies.movie_id"))
-    image = db.Column(db.String)
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
     place_movie = db.Column(db.String)
     name_irl = db.Column(db.String)
     description = db.Column(db.String)
+    photo = db.Column(db.String)
+    movie_still = db.Column(db.String)
+    submitted = db.Column(db.Boolean)
+    submission_status = db.Column(db.String)
+    public = db.Column(db.Boolean)
+
 
     movie = db.relationship("Movie", back_populates="locations")
 
