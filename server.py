@@ -21,6 +21,11 @@ def show_homepage():
     """Show homepage"""
     return render_template("home.html")
 
+@app.route('/login')
+def show_login():
+    """Show login page"""
+    return render_template("login.html")
+
 @app.route('/maps')
 def mapspage():
     """Show maps"""
@@ -28,6 +33,7 @@ def mapspage():
     return render_template("maps.html", 
                             maps_api_key = maps_api_key,
                             movies=movies)
+
 
 @app.route('/api/locations')
 def location_info():
