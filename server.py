@@ -26,6 +26,11 @@ def show_login():
     """Show login page"""
     return render_template("login.html")
 
+@app.route('/signup')
+def show_signup():
+    """Show sign up"""
+    return render_template("signup.html")
+
 @app.route('/maps')
 def mapspage():
     """Show maps"""
