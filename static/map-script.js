@@ -1,6 +1,5 @@
-//TO DO:
-// - break this funciton up 
-// - start thinking about testing
+//KNOWN BUGS:
+//- Info windows do not close when new windows open up
 
 let map_markers = [];
 
@@ -69,6 +68,16 @@ function initMap() {
     }
   })
 }
+
+let elem = document.getElementById("info-bar");
+let infScroll = new InfiniteScroll( elem, {
+  // options
+  path: '.pagination_next',
+  append: '.info-card',
+  button: '.view-more-button',
+  status: '.page-load-status',
+  history: false,
+});
 
 
 filterMarkers = function (category) {
