@@ -60,6 +60,7 @@ class Location(db.Model):
                         autoincrement= True,
                         primary_key=True)
     movie_id = db.Column(db.Integer, db.ForeignKey("movies.movie_id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
     place_movie = db.Column(db.String)
@@ -73,6 +74,7 @@ class Location(db.Model):
 
 
     movie = db.relationship("Movie", back_populates="locations")
+    user = db.relationship("User", back_populates="locations")
 
     def __repr__(self):
         return f'<Location location_id={self.location_id} place={self.place_movie}>'

@@ -33,6 +33,7 @@ def get_movies():
                                 release_date = movie_to_add["release_date"],
                                 running_time = movie_to_add["running_time"],
                                 rt_score = movie_to_add["rt_score"]
+                                #add all the new stuff
                                 ))
     model.db.session.commit()
 
