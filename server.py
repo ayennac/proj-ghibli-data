@@ -21,15 +21,50 @@ def show_homepage():
     """Show homepage"""
     return render_template("home.html")
 
-@app.route('/login')
+@app.route('/login', methods = ['GET'])
 def show_login():
     """Show login page"""
     return render_template("login.html")
 
-@app.route('/signup')
+@app.route('/user-login', methods=['POST'])
+def login_user():
+    """Login user"""
+    user_name = request.form.get('username')
+    password = request.form.get('password')
+#get user by username
+
+#if not user
+    #user not found
+#if password in storage == password
+    #put user in the session
+    #successful login
+#else
+    #flash incorect password
+    #redirect
+    print(f'{user_name} {password}')
+    return redirect('/login')
+
+@app.route('/signup', methods=["GET"])
 def show_signup():
     """Show sign up"""
     return render_template("signup.html")
+
+@app.route('/user-signup', methods=['POST'])
+def signup_user():
+    """Sign up user"""
+
+    first_name = request.form.get('first-name')
+    last_name = request.form.get('last-name')
+    user_name = request.form.get('username')
+    email_address = request.form.get('email')
+    password = request.form.get('password')
+    
+#if email in database:
+    #flash email in database please login
+#else 
+    #create new user
+    return redirect('/signup')
+
 
 @app.route('/maps')
 def mapspage():

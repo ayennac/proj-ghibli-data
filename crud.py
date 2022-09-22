@@ -16,6 +16,16 @@ def get_all_movies():
     """Return a list of all movies"""
     return Movie.query.all()
 
+# def create_new_user():
+#     """Create a new user"""
+
+#def find user from username():
+# find user by username
+
+#move these from seed_database.py
+#def create new movie():
+
+#def create new location():
 
 if __name__ == '__main__':
     from server import app
