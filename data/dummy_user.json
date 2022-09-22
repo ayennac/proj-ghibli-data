@@ -1,0 +1,23 @@
+[
+    {
+        "username": "cat_1",
+        "first_name": "Harry",
+        "last_name": "Jerry",
+        "email_address": "harry@jerry.com",
+        "password": "harryjerry"
+    },
+    {
+        "username": "dog_1",
+        "first_name": "ralph",
+        "last_name": "malph",
+        "email_address": "ralph@malph.com",
+        "password": "ralphmalph"
+    },
+    {
+        "username": "parakeetboi",
+        "first_name": "string",
+        "last_name": "dude",
+        "email_address": "string@dude.com",
+        "password": "stringdude"
+    }
+]
