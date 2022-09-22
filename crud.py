@@ -1,6 +1,6 @@
 """CRUD operations"""
 
-from model import db, Movie, Location, connect_to_db
+from model import db, Movie, Location, connect_to_db, User
 
 
 def get_movie_from_title(title):
@@ -19,28 +19,38 @@ def get_all_movies():
 
 def create_new_user(username, first_name, last_name, email_address, password):
     """Return a new User object"""
-    user = User(username=username, first_name=first_name, email_address =email_address, password=password)
+    user = User(username=username, first_name=first_name, last_name =last_name, email_address =email_address, password=password)
     return user
     
 
+def get_user_by_userid(userid):
+    """Return a user from userid"""
+    return User.query.get(userid)
+
 def get_user_by_username(username):
-    """Return a user from username"""
-    return User.query.get(username)
+    """Return a user from email"""
+    return User.query.filter(User.username == username).first()
+
+def get_user_by_email(email_address):
+    """Return a user from email"""
+    return User.query.filter(User.email_address == email_address).first()
 
 
-def create_new_movie(title, original_title , original_title_rom, image, movie_banner, description, director, producers, release_date, running_time, rt_score):
+def create_new_movie(title, original_title , original_title_rom, image, movie_banner, description, director, producer, release_date, running_time, rt_score):
     """Return a new movie"""
 
-    movie = Movie(title=title,                 original_title=original_title,
+    movie = Movie(title=title,                 
+                    original_title=original_title,
                     original_title_rom=original_title_rom,
-                    image=image, movie_banner=movie_banner,
+                    image=image, 
+                    movie_banner=movie_banner,
                     description=description,
                     director=director,
                     producer=producer,
                     release_date=release_date,
                     running_time=running_time,
                     rt_score=rt_score)
-        return movie
+    return movie
 
 def create_new_location(user, movie, latitude, longitude, place_movie, name_irl, description, photo, movie_still, submitted, submission_status, public):
     location = Location(user=user,

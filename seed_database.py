@@ -37,9 +37,11 @@ def get_movies():
             model.db.session.add(new_movie)
     model.db.session.commit()
 
-studio_ghibli = crud.create_new_user("StudioGhibli", "Studio", "Ghibli", "StudioGhibli@StudioGhibli.com", "StudioGhibli")
-model.db.session.add(studio_ghibli)
-model.db.session.commit()
+
+def create_studio_user():
+    studio_ghibli = crud.create_new_user("StudioGhibli", "Studio", "Ghibli", "StudioGhibli@StudioGhibli.com", "StudioGhibli")
+    model.db.session.add(studio_ghibli)
+    model.db.session.commit()
 
 def get_location():
     """Load location from dataset into database."""
@@ -47,7 +49,7 @@ def get_location():
         location_data = json.loads(r.read())
         for location in location_data:
             movie_to_edit = crud.get_movie_from_title(location["movie"])
-            ghibli_user = crud.get_user_by_username("StudioGhibli")
+            ghibli_user = crud.get_user_by_userid(1)
             new_location = crud.create_new_location(ghibli_user,
                                                     movie_to_edit,
                                                     location["latitude"],
@@ -68,5 +70,6 @@ def get_location():
 if __name__ == '__main__':
     model.connect_to_db(server.app)
     model.db.create_all()
+    create_studio_user()
     get_movies()
     get_location()

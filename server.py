@@ -55,15 +55,19 @@ def signup_user():
 
     first_name = request.form.get('first-name')
     last_name = request.form.get('last-name')
-    user_name = request.form.get('username')
+    username = request.form.get('username')
     email_address = request.form.get('email')
     password = request.form.get('password')
-    
-#if email in database:
-    #flash email in database please login
-#else 
-    #create new user
-    return redirect('/signup')
+    if crud.get_user_by_email(email_address):
+        flash("Email address already in use. Please log in with your username")
+    if crud.get_user_by_username(username):
+        flash("Username already in use. Please log in with your username")
+    else:
+        new_user = crud.create_new_user(username, first_name, last_name, email_address, password)
+        db.session.add(new_user)
+        db.session.commit()
+        flash("Account was made")
+    return redirect('/')
 
 
 @app.route('/maps')
@@ -80,7 +84,8 @@ def location_info():
     """JSON information about bears"""
     locations = [
         {
-            "image": location.image,
+            "photo": location.photo,
+            "movie_still": location.movie_still,
             "location_id": location.location_id,
             "latitude": location.latitude,
             "longitude": location.longitude,
