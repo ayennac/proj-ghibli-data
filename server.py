@@ -68,6 +68,19 @@ def signup_user():
         flash("Account was made")
     return redirect('/')
 
+@app.route('/userprofile')
+def show_user_profile():
+    """Show user profile"""
+    
+    user_id = session.get('user_id')
+    if !(user_id):
+        flash("please log in")
+        return redirect('/login')
+
+    user = get_user_by_userid(user_id)
+
+    return render_template('userprofile.html', user = user)
+
 
 @app.route('/maps')
 def mapspage():
