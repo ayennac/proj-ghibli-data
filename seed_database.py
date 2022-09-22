@@ -18,7 +18,6 @@ model.db.create_all()
 
 def get_movies():
     """Load movies from film_info.json into databse."""
-    
     with open('data/film_info.json') as f:
         movie_data = json.loads(f.read())
         for movie_to_add in movie_data:
@@ -37,10 +36,23 @@ def get_movies():
             model.db.session.add(new_movie)
     model.db.session.commit()
 
-
 def create_studio_user():
     studio_ghibli = crud.create_new_user("StudioGhibli", "Studio", "Ghibli", "StudioGhibli@StudioGhibli.com", "StudioGhibli")
     model.db.session.add(studio_ghibli)
+    model.db.session.commit()
+
+
+def get_dummy_users():
+    """Load dummy users from dummy_users file"""
+    with open('data/dummy_user.json') as f:
+        user_data = json.loads(f.read())
+        for user in user_data:
+            new_user = crud.create_new_user(user["username"],
+                                            user["first_name"],
+                                            user["last_name"],
+                                            user["email_address"],
+                                            user["password"])
+            model.db.session.add(new_user)
     model.db.session.commit()
 
 def get_location():
@@ -71,5 +83,6 @@ if __name__ == '__main__':
     model.connect_to_db(server.app)
     model.db.create_all()
     create_studio_user()
+    get_dummy_users()
     get_movies()
     get_location()

@@ -29,19 +29,18 @@ def show_login():
 @app.route('/user-login', methods=['POST'])
 def login_user():
     """Login user"""
-    user_name = request.form.get('username')
+    username = request.form.get('username')
     password = request.form.get('password')
-#get user by username
+    potential_user = crud.get_user_by_username(username)
 
-#if not user
-    #user not found
-#if password in storage == password
-    #put user in the session
-    #successful login
-#else
-    #flash incorect password
-    #redirect
-    print(f'{user_name} {password}')
+    if potential_user.password == password:
+        session['user_id'] = potential_user.user_id
+        flash('Logged in!')
+    else:
+        flash('Not logged in!')
+    return redirect("/")
+
+
     return redirect('/login')
 
 @app.route('/signup', methods=["GET"])
