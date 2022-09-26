@@ -42,6 +42,15 @@ def login_user():
 
 
     return redirect('/login')
+    
+@app.route("/logout")
+def process_logout():
+    """Log user out."""
+
+    del session["user_id"]
+    flash("Logged out.")
+    return redirect("/")
+
 
 @app.route('/signup', methods=["GET"])
 def show_signup():
@@ -82,6 +91,8 @@ def show_user_profile():
     return render_template('userprofile.html', user = user)
 
 
+
+
 @app.route('/maps')
 def mapspage():
     """Show maps"""
@@ -112,8 +123,9 @@ def location_info():
 
 @app.route('/new-location', methods=['POST'])
 def newlocation():
-    user_id = crud.get_user_by_userid(session.get('user_id'))
-    movie = "Princess Mononoke"
+    user = crud.get_user_by_userid(session.get('user_id'))
+    print(user)
+    movie = crud.get_movie_from_title("Princess Mononoke")
     latitude = 35.75408552508377
     longitude = 139.7690024152055
     place_movie = "The Sea"
@@ -122,7 +134,7 @@ def newlocation():
     photo = request.form.get("inputpic")
     movie_still = "/static/sample_bird.jpg"
 
-    new_location = crud.create_new_location(user_id, 
+    new_location = crud.create_new_location(user, 
                                         movie, 
                                         latitude, 
                                         longitude, 
@@ -134,8 +146,8 @@ def newlocation():
                                         False, 
                                         "Approved",
                                         True)
-    model.db.session.add(new_location)    
-    model.db.session.commit()
+    db.session.add(new_location)    
+    db.session.commit()
     flash("added new location to database!")
     return redirect("/userprofile")
 
