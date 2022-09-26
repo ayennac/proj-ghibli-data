@@ -73,11 +73,11 @@ def show_user_profile():
     """Show user profile"""
     
     user_id = session.get('user_id')
-    if !(user_id):
+    if not user_id:
         flash("please log in")
         return redirect('/login')
 
-    user = get_user_by_userid(user_id)
+    user = crud.get_user_by_userid(user_id)
 
     return render_template('userprofile.html', user = user)
 
@@ -109,6 +109,38 @@ def location_info():
         for location in crud.get_all_locations()
     ]
     return jsonify(locations)
+
+@app.route('/new-location', methods=['POST'])
+def newlocation():
+    user_id = crud.get_user_by_userid(session.get('user_id'))
+    movie = "Princess Mononoke"
+    latitude = 35.75408552508377
+    longitude = 139.7690024152055
+    place_movie = "The Sea"
+    name_irl = "Place"
+    description = request.form.get("pic-description")
+    photo = request.form.get("inputpic")
+    movie_still = "/static/sample_bird.jpg"
+
+    new_location = crud.create_new_location(user_id, 
+                                        movie, 
+                                        latitude, 
+                                        longitude, 
+                                        place_movie, 
+                                        name_irl, 
+                                        description, 
+                                        photo, 
+                                        movie_still, 
+                                        False, 
+                                        "Approved",
+                                        True)
+    model.db.session.add(new_location)    
+    model.db.session.commit()
+    flash("added new location to database!")
+    return redirect("/userprofile")
+
+
+
 
 
 if __name__ == "__main__":
