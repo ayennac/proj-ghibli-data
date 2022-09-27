@@ -10,31 +10,11 @@
 <h2>User Functions</h2>
 <!-- Trigger/Open The Modal -->
 <button id="myBtn">Upload New Moment</button>
+
 <!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <form action ="/new-location" method='POST' enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="inputpic">Image</label>
-            <input type="file" name="inputpic" class="form-control" id="inputfile">
-        </div>
-        <div class="form-group">
-            <label for="pic-description">Description</label>
-            <input type="text" name = "pic-description" class="form-control" id="pic-description">
-        </div>
-        <div class="form-group">
-            <label for="pic-nameirl">Place</label>
-            <input type="text" name = "pic-nameirl" class="form-control" id="pic-nameirl">
-        </div>
-        
-        <button type="submit" class="btn btn-default">Submit</button>
-    </form>
-  </div>
-
-</div>
+{% include 'submitlocation.html' %}
+{% block location_modal %}
+{% endblock %}
 
 <div>
   {% for location in locations%}

@@ -94,8 +94,9 @@ def show_user_profile():
 
     locations = crud.get_location_by_user(user_id)
     user = crud.get_user_by_userid(user_id)
+    movies = crud.get_all_movies()
 
-    return render_template('userprofile.html', user = user, locations = locations)
+    return render_template('userprofile.html', user = user, locations = locations, movies=movies)
 
 
 @app.route('/maps')
@@ -129,8 +130,7 @@ def location_info():
 @app.route('/new-location', methods=['POST'])
 def newlocation():
     user = crud.get_user_by_userid(session.get('user_id'))
-    print(user)
-    movie = crud.get_movie_from_title("Princess Mononoke")
+    movie = crud.get_movie_from_title(request.form.get("chosen-movie"))
     latitude = 35.75408552508377
     longitude = 139.7690024152055
     place_movie = "The Sea"
