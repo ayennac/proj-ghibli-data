@@ -17,6 +17,11 @@ def get_all_movies():
     return Movie.query.all()
 
 
+def get_location_by_user(user_id):
+    """Return a list of locations"""
+    return Location.query.filter(User.user_id == user_id).all()
+
+
 def create_new_user(username, first_name, last_name, email_address, password):
     """Return a new User object"""
     user = User(username=username, first_name=first_name, last_name =last_name, email_address =email_address, password=password)

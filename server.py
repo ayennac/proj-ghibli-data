@@ -86,11 +86,10 @@ def show_user_profile():
         flash("please log in")
         return redirect('/login')
 
+    locations = crud.get_location_by_user(user_id)
     user = crud.get_user_by_userid(user_id)
 
-    return render_template('userprofile.html', user = user)
-
-
+    return render_template('userprofile.html', user = user, locations = locations)
 
 
 @app.route('/maps')
