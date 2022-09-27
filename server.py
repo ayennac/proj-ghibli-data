@@ -6,6 +6,8 @@ from flask import (Flask, render_template, request, flash, session,
 import os
 from jinja2 import StrictUndefined
 
+import cloudinary.uploader
+
 import crud
 
 from model import connect_to_db, db, Location, Movie
@@ -14,7 +16,11 @@ app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 maps_api_key = os.environ['MAPS_API_KEY']
-#make sure to source secrets.sh to put it into the environment 
+
+CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
+CLOUDINARY_SECRET = os.environ['CLOUDINARY_SECRET']
+CLOUD_NAME = "dvrzkwd2m"
+
 
 @app.route('/')
 def show_homepage():
@@ -130,7 +136,15 @@ def newlocation():
     place_movie = "The Sea"
     name_irl = "Place"
     description = request.form.get("pic-description")
-    photo = request.form.get("inputpic")
+    photo = request.files["inputpic"]
+
+    cloudinary_request = cloudinary.uploader.upload(photo,
+                                                    api_key=CLOUDINARY_KEY,
+                                                    api_secret=CLOUDINARY_SECRET,
+                                                    cloud_name=CLOUD_NAME)
+    cloudinary_img_src = cloudinary_request['secure_url']
+
+
     movie_still = "/static/sample_bird.jpg"
 
     new_location = crud.create_new_location(user, 
@@ -140,7 +154,7 @@ def newlocation():
                                         place_movie, 
                                         name_irl, 
                                         description, 
-                                        photo, 
+                                        cloudinary_img_src, 
                                         movie_still, 
                                         False, 
                                         "Approved",
