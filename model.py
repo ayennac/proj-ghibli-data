@@ -42,8 +42,8 @@ class User(db.Model):
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
     email_address = db.Column(db.String)
-    password = db.Column(db.String)
-
+    password = db.Column(db.String(128))
+    
     locations = db.relationship("Location", back_populates="user")
 
     def __repr__(self):

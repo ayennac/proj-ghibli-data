@@ -2,18 +2,4 @@
 
 {% block title %}Homepage{% endblock %}
 
-{% block body %}
 
-{% if 'user_id' not in session%}
-<h1><a href="login">Login</a> </h1>
-<h1><a href="signup">Sign Up</a> </h1>
-<p>When a user logs in or signs up(which then logs them in), these links should disappear.</p>
-{% endif %}
-
-{% if 'user_id' in session%}
-<h1><a href="logout">Logout</a> </h1>
-<h1><a href="userprofile">User profile</a> </h1>
-{% endif %}
-
-<h1><a href="maps">Maps</a> </h1>
-{%endblock%}
