@@ -35,8 +35,8 @@ def show_login():
 @app.route('/user-login', methods=['POST'])
 def login_user():
     """Login user"""
-    username = request.form.get('username')
-    password = request.form.get('password')
+    username = request.json.get('username')
+    password = request.json.get('password')
     potential_user = crud.get_user_by_username(username)
 
     if potential_user.password == password:
@@ -44,10 +44,7 @@ def login_user():
         flash('Logged in!')
     else:
         flash('Not logged in!')
-    return redirect("/")
-
-
-    return redirect('/login')
+    return jsonify({'code': 'result_code'})
     
 @app.route("/logout")
 def process_logout():
@@ -67,11 +64,11 @@ def show_signup():
 def signup_user():
     """Sign up user"""
 
-    first_name = request.form.get('first-name')
-    last_name = request.form.get('last-name')
-    username = request.form.get('username')
-    email_address = request.form.get('email')
-    password = request.form.get('password')
+    first_name = request.json.get('firstname')
+    last_name = request.json.get('lastname')
+    username = request.json.get('username')
+    email_address = request.json.get('email')
+    password = request.json.get('signpassword')
     if crud.get_user_by_email(email_address):
         flash("Email address already in use. Please log in with your username")
     if crud.get_user_by_username(username):
@@ -81,7 +78,7 @@ def signup_user():
         db.session.add(new_user)
         db.session.commit()
         flash("Account was made")
-    return redirect('/')
+    return jsonify({'code': 'result_code'})
 
 @app.route('/userprofile')
 def show_user_profile():
