@@ -10,9 +10,10 @@ import cloudinary.uploader
 
 import crud
 
-from model import connect_to_db, db, Location, Movie
+from model import connect_to_db, db, Location, Movie, User
 
-app = Flask(__name__)
+
+app = Flask(__name__, template_folder='templates')
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 maps_api_key = os.environ['MAPS_API_KEY']
