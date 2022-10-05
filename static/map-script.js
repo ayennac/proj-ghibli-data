@@ -1,6 +1,3 @@
-//TO DO:
-// - break this funciton up 
-// - start thinking about testing
 
 let map_markers = [];
 
@@ -13,11 +10,9 @@ function initMap() {
       mapId: "625155ec1bab001d", 
     });
 
-    let location_data = {};
     fetch('/api/locations')
       .then((response) => response.json())
       .then((locations) => {
-        
         for(const location of locations){
 
           //Creates all location markers

@@ -26,7 +26,10 @@ CLOUD_NAME = "dvrzkwd2m"
 @app.route('/')
 def show_homepage():
     """Show homepage"""
-    return render_template("home.html")
+    movies = crud.get_all_movies()
+    return render_template("home.html",
+                            movies = movies,
+                            maps_api_key=maps_api_key)
 
 @app.route('/login', methods = ['GET'])
 def show_login():
@@ -97,18 +100,19 @@ def show_user_profile():
     return render_template('userprofile.html', user = user, locations = locations, movies=movies)
 
 
-@app.route('/maps')
-def mapspage():
-    """Show maps"""
-    movies = crud.get_all_movies()
-    return render_template("maps.html", 
-                            maps_api_key = maps_api_key,
-                            movies=movies)
+@app.route('/view-video')
+def showvideopage():
+    """Show video moments"""
+    #get a random location
+    #pass that in
+    location = crud.get_random_location()
+    return render_template("view.html", 
+                            location=location)
 
 
 @app.route('/api/locations')
 def location_info():
-    """JSON information about bears"""
+    """JSON information about locations"""
     locations = [
         {
             "photo": location.photo,
@@ -119,7 +123,10 @@ def location_info():
             "place_movie": location.place_movie,
             "name_irl": location.name_irl,
             "description": location.description,
-            "movie": location.movie.title
+            "movie": location.movie.title,
+            "submitted": location.submitted,
+            "submission_status": location.submission_status,
+            "public": location.public
         }
         for location in crud.get_all_locations()
     ]

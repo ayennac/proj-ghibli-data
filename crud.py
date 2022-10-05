@@ -2,6 +2,7 @@
 
 from model import db, Movie, Location, connect_to_db, User
 
+from random import choice
 
 def get_movie_from_title(title):
     """Return a movie from title"""
@@ -19,7 +20,13 @@ def get_all_movies():
 
 def get_location_by_user(user_id):
     """Return a list of locations"""
+
     return Location.query.filter(User.user_id == user_id).all()
+
+def get_random_location():
+    locations = get_all_locations()
+    location_chosen = choice(locations)
+    return Location.query.filter(Location.location_id == location_chosen.location_id).first()
 
 
 def create_new_user(username, first_name, last_name, email_address, password):

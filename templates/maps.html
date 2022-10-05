@@ -1,6 +1,4 @@
-{% extends 'base.html' %}
-
-{% block maps %}
+{% block body %}
 <div class="container">
 
     <div class="row">
@@ -41,8 +39,10 @@
   </div>
 {% endblock %}
 
+
 {% block after_body %}
 <script async
     src="https://maps.googleapis.com/maps/api/js?key={{maps_api_key}}&callback=initMap">
 </script>
+
 {% endblock %}
