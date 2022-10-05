@@ -1,19 +1,22 @@
 {% extends 'base.html' %}
 
-{% block title %}Homepage{% endblock %}
-{% include 'header.html' %}
-{% block header %}
-{% endblock %}
-{% block body %}
-<div id="intro">
+    {% block title %}Homepage{% endblock %}
+    {% include 'header.html' %}
+        {% block header %}
+    {% endblock %}
+
+    {% block body %}
+        <div id="intro">
     
-</div>
+        </div>
 
-{% include 'maps.html' %}
-{% block maps %}
-{% endblock %}
+        {% include 'maps.html' %}
+        {% block maps %}
+        {% block maps_after_body %}
 
+        {% endblock %}
 
-{% endblock %}
+        {% endblock %}
 
+    {% endblock %}
 

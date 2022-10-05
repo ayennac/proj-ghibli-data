@@ -10,17 +10,20 @@
 <h2>User Functions</h2>
 <!-- Trigger/Open The Modal -->
 <button id="myBtn">Upload New Moment</button>
-
+<h3>Settings</h3>
+<p>Change email address</p>
+<p>Delete Account</p>
 <!-- The Modal -->
 {% include 'submitlocation.html' %}
 {% block location_modal %}
 {% endblock %}
 
-<div>
+<div class = "container">
+  <div class = "row">
   {% for location in locations%}
-  <div class="movie-card location-{{location["location_id"]}}"> 
+  <div class="movie-card location-{{location['location_id']}} col-4"> 
     <div class="card">
-      <img class="card-img-top" src={{location["photo"]}} alt="A picture of {{location["name_irl"]}}"></img>
+      <img class="card-img-top" src="{{location['photo']}}" alt="A picture of {{location["name_irl"]}}"></img>
         <div class="card-body">
           <h5 class="card-title"> {{location["name_irl"]}}</h5> 
           <h6 class="card-sub-title"> {{location["place_movie"]}} from {{location["movie"]}} </h6>
@@ -30,12 +33,11 @@
     </div> 
   </div>
   {%endfor%}
+  </div>
 </div>
 
 
-<h3>Settings</h3>
-<p>Change email address</p>
-<p>Delete Account</p>
+
 
 
 <script src="/static/user-functions.js"></script>
